@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Estación Solar - Datos en Vivo</title>
   <style>
     body {
@@ -24,7 +24,6 @@
     }
     header img {
       max-height: 60px;
-      margin-left: 20px;
     }
     .card {
       background: #fff;
@@ -77,13 +76,16 @@
 <body>
   <header>
     <h1>⚡ Estación Solar - Datos en Vivo</h1>
+    <!-- Asegúrate de renombrar tu logo como logocmmc.jpg y colocarlo en la misma carpeta -->
     <img src="logocmmc.jpg" alt="CMMC SAT Logo">
   </header>
 
   <div class="card">
     <h2>Índice UV</h2>
     <iframe
-      src="https://io.adafruit.com/niederhauscmmc/feeds/monitor-uv-niederhaus-cmmc-sat/chart?background=%23ffffff&color=%23FF4136&timezone=America%2FLima&type=line"
+      width="800" height="300"
+      src="https://io.adafruit.com/guille_meteorologia/feeds/monitor-uv-niederhaus-cmmc-sat/chart?background=%23ffffff&color=%23FF4136&timezone=America%2FLima&type=line"
+      frameborder="0"
       title="Gráfica Índice UV">
     </iframe>
   </div>
@@ -91,13 +93,15 @@
   <div class="card">
     <h2>Irradiancia Solar</h2>
     <iframe
-      src="https://io.adafruit.com/niederhauscmmc/feeds/monitor-irradiancia-niederhaus-cmmc-sat/chart?background=%23ffffff&color=%230073e6&timezone=America%2FLima&type=line"
+      width="800" height="300"
+      src="https://io.adafruit.com/guille_meteorologia/feeds/irradiancia-solar-niederhaus/chart?background=%23ffffff&color=%230073e6&timezone=America%2FLima&type=line"
+      frameborder="0"
       title="Gráfica Irradiancia Solar">
     </iframe>
   </div>
 
   <footer>
-    <div>Panel completo en <a href="https://io.adafruit.com/niederhauscmmc/dashboards" target="_blank">Adafruit IO</a></div>
+    <div>Panel completo en <a href="https://io.adafruit.com/guille_meteorologia/dashboards" target="_blank">Adafruit IO</a></div>
     <div class="coordinates">Coordenadas de ubicación: -31.577588, -60.543673</div>
     <div class="contact">
       Guillermo Niedermayer<br>
@@ -107,4 +111,3 @@
   </footer>
 </body>
 </html>
-
