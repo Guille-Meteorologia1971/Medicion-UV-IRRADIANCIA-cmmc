@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sobre el Proyecto</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card">
+    <h1>🛠 Proyecto: Estación Solar con ESP32</h1>
+    <p>Este proyecto mide el índice UV y la irradiancia solar usando un ESP32 y sensores conectados.</p>
+
+    <h2>🔧 Componentes</h2>
+    <ul>
+      <li>ESP32 DevKit</li>
+      <li>Sensor UV analógico (conectado al pin 34)</li>
+      <li>Sensor de luz Adafruit TSL2591</li>
+      <li>Pantalla LCD I2C (16x2)</li>
+    </ul>
+
+    <h2>📡 Funcionalidad</h2>
+    <ul>
+      <li>Conexión automática a WiFi con portal cautivo (WiFiManager)</li>
+      <li>Lectura y cálculo de índice UV e irradiancia</li>
+      <li>Publicación de datos en tiempo real en <a href="https://io.adafruit.com/guille_meteorologia">Adafruit IO</a></li>
+      <li>Servidor web integrado en el ESP32 para mostrar datos localmente</li>
+    </ul>
+  </div>
+</body>
+</html>
