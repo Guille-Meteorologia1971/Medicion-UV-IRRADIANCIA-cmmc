@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Estación Solar - Datos en Vivo</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
+      background: #f5f5f5;
       margin: 0; padding: 20px;
       color: #333;
     }
     header {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       margin-bottom: 20px;
     }
     header h1 {
-      font-size: 2rem;
-      margin: 0;
+      margin: 0; font-size: 2rem;
     }
     header img {
       max-height: 60px;
@@ -30,28 +29,25 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       padding: 20px;
       margin-bottom: 20px;
+      text-align: center;
     }
     .card h2 {
-      margin-top: 0;
+      margin: 0 0 10px;
       font-size: 1.2rem;
-      display: flex;
+      display: inline-flex;
       align-items: center;
     }
     .card:first-of-type h2::before {
-      content: '🌞';
-      margin-right: 8px;
+      content: '🌞'; margin-right: 8px;
     }
     .card:last-of-type h2::before {
-      content: '☀️';
-      margin-right: 8px;
+      content: '☀️'; margin-right: 8px;
     }
-    iframe {
-      width: 100%;
+    .chart {
       max-width: 800px;
-      height: 300px;
-      border: none;
-      display: block;
-      margin: 10px auto 0;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 4px;
     }
     footer {
       text-align: center;
@@ -59,54 +55,54 @@
       font-size: 0.9rem;
       line-height: 1.4;
     }
-    .coordinates {
-      margin-top: 10px;
-    }
-    .contact {
-      margin-top: 15px;
-      font-size: 0.9rem;
-    }
-    a {
-      color: #0073e6;
-      text-decoration: none;
-    }
+    a { color: #0073e6; text-decoration: none; }
   </style>
 </head>
 <body>
+
   <header>
     <h1>⚡ Estación Solar - Datos en Vivo</h1>
-    <!-- Renombra tu imagen a logocmmc.jpg y colócala aquí -->
     <img src="logocmmc.jpg" alt="CMMC SAT Logo">
   </header>
 
   <div class="card">
-    <h2>Índice UV</h2>
-    <iframe
-      width="800" height="300"
-      src="https://io.adafruit.com/guille_meteorologia/feeds/monitor-uv-niederhaus-cmmc-sat/chart?background=%23ffffff&color=%23FF4136&timezone=America%2FLima&type=line"
-      frameborder="0"
-      title="Gráfica Índice UV">
-    </iframe>
+    <h2>Índice UV</h2><br>
+    <a href="https://io.adafruit.com/guille_meteorologia/feeds/monitor-uv-niederhaus-cmmc-sat">
+      <img
+        class="chart"
+        src="https://io.adafruit.com/guille_meteorologia/feeds/monitor-uv-niederhaus-cmmc-sat/chart.png?background=%23ffffff&color=%23FF4136&timezone=America%2FLima&type=line"
+        alt="Gráfica Índice UV">
+    </a>
   </div>
 
   <div class="card">
-    <h2>Irradiancia Solar</h2>
-    <iframe
-      width="800" height="300"
-      src="https://io.adafruit.com/guille_meteorologia/feeds/irradiancia-solar-niederhaus/chart?background=%23ffffff&color=%230073e6&timezone=America%2FLima&type=line"
-      frameborder="0"
-      title="Gráfica Irradiancia Solar">
-    </iframe>
+    <h2>Irradiancia Solar</h2><br>
+    <a href="https://io.adafruit.com/guille_meteorologia/feeds/irradiancia-solar-niederhaus">
+      <img
+        class="chart"
+        src="https://io.adafruit.com/guille_meteorologia/feeds/irradiancia-solar-niederhaus/chart.png?background=%23ffffff&color=%230073e6&timezone=America%2FLima&type=line"
+        alt="Gráfica Irradiancia Solar">
+    </a>
   </div>
 
   <footer>
-    <div>Panel completo en <a href="https://io.adafruit.com/guille_meteorologia/dashboards" target="_blank">Adafruit IO</a></div>
-    <div class="coordinates">Coordenadas de ubicación: -31.577588, -60.543673</div>
-    <div class="contact">
+    <div>Panel completo en <a href="https://io.adafruit.com/guille_meteorologia/dashboards" target="_blank">Adafruit IO</a></div>
+    <div>Coordenadas de ubicación: -31.577588, -60.543673</div>
+    <div>
       Guillermo Niedermayer<br>
       Integrante del CMMC SAT y Secretario Bomberos Voluntarios Rincón<br>
       <a href="mailto:guille.meteorologia@gmail.com">guille.meteorologia@gmail.com</a>
     </div>
   </footer>
+
+  <!-- Recarga automática de las imágenes cada 60 segundos -->
+  <script>
+    setInterval(() => {
+      document.querySelectorAll('.chart').forEach(img => {
+        const t = Date.now();
+        img.src = img.src.split('?')[0] + img.src.slice(img.src.indexOf('?')) + '&_=' + t;
+      });
+    }, 60000);
+  </script>
 </body>
 </html>
