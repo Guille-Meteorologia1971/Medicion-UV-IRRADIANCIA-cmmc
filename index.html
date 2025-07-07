@@ -1,27 +1,71 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Estación Solar - Datos en Vivo</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+    iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 300px;
+      border: none;
+      display: block;
+      margin: 0 auto;
+    }
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9rem;
+    }
+    a {
+      color: #0073e6;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>📡 Estación Solar - Datos en Vivo</h1>
+  <h1>⚡ Estación Solar - Datos en Vivo</h1>
 
   <div class="card">
     <h2>🌞 Índice UV</h2>
-    <iframe src="https://io.adafruit.com/guille_meteorologia/feeds/monitor-uv-niederhaus-cmmc-sat/embed" allowfullscreen></iframe>
+    <iframe
+      src="https://io.adafruit.com/TU_USUARIO/feeds/NOMBRE_DEL_FEED_UV/chart?background=%23ffffff&color=%23FF4136&timezone=America%2FLima&type=line"
+      title="Gráfica Índice UV">
+    </iframe>
   </div>
 
   <div class="card">
-    <h2>🔆 Irradiancia Solar</h2>
-    <iframe src="https://io.adafruit.com/guille_meteorologia/feeds/irradiancia-solar-niederhaus/embed" allowfullscreen></iframe>
+    <h2>☀️ Irradiancia Solar</h2>
+    <iframe
+      src="https://io.adafruit.com/TU_USUARIO/feeds/NOMBRE_DEL_FEED_IRRADIANCIA/chart?background=%23ffffff&color=%230073e6&timezone=America%2FLima&type=line"
+      title="Gráfica Irradiancia Solar">
+    </iframe>
   </div>
 
-  <p>
-    Panel completo en <a href="https://io.adafruit.com/guille_meteorologia/dashboards" target="_blank">Adafruit IO</a>
-  </p>
+  <footer>
+    Panel completo en <a href="https://io.adafruit.com/TU_USUARIO/dashboards" target="_blank">Adafruit IO</a>
+  </footer>
 </body>
 </html>
