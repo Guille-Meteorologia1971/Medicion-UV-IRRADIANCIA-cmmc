@@ -2,105 +2,112 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Estación Solar - Datos en Vivo</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      margin: 0; padding: 20px;
-      color: #333;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 20px;
     }
+
     header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      justify-content: space-between;
     }
+
     header h1 {
-      margin: 0; font-size: 2rem;
+      font-size: 24px;
+      color: #333;
     }
+
     header img {
       max-height: 60px;
     }
+
     .card {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      padding: 20px;
-      margin-bottom: 20px;
-      text-align: center;
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
+
     .card h2 {
-      margin: 0 0 10px;
-      font-size: 1.2rem;
-      display: inline-flex;
-      align-items: center;
+      margin-top: 0;
+      font-size: 18px;
+      color: #444;
     }
-    .card:first-of-type h2::before {
-      content: '🌞'; margin-right: 8px;
-    }
-    .card:last-of-type h2::before {
-      content: '☀️'; margin-right: 8px;
-    }
+
     .chart {
-      max-width: 800px;
       width: 100%;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      margin-top: 10px;
     }
+
     footer {
-      text-align: center;
       margin-top: 30px;
-      font-size: 0.9rem;
-      line-height: 1.4;
+      font-size: 14px;
+      text-align: center;
+      color: #555;
     }
-    a { color: #0073e6; text-decoration: none; }
+
+    footer a {
+      color: #007bff;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
-
   <header>
     <h1>⚡ Estación Solar - Datos en Vivo</h1>
     <img src="logocmmc.jpg" alt="CMMC SAT Logo">
   </header>
 
+  <!-- Índice UV -->
   <div class="card">
-    <h2>Índice UV</h2><br>
-    <a href="https://io.adafruit.com/guille_meteorologia/feeds/monitor-uv-niederhaus-cmmc-sat">
+    <h2>🌞 Índice UV</h2>
+    <a href="https://io.adafruit.com/guille_meteorologia/feeds/monitor-uv-niederhaus-cmmc-sat" target="_blank">
       <img
+        src="https://io.adafruit.com/guille_meteorologia/feeds/monitor-uv-niederhaus-cmmc-sat/chart.png?width=800&height=300&type=line&duration=7d"
+        alt="Gráfica UV"
         class="chart"
-        src="https://io.adafruit.com/guille_meteorologia/feeds/monitor-uv-niederhaus-cmmc-sat/chart.png?background=%23ffffff&color=%23FF4136&timezone=America%2FLima&type=line"
-        alt="Gráfica Índice UV">
+        data-src="https://io.adafruit.com/guille_meteorologia/feeds/monitor-uv-niederhaus-cmmc-sat/chart.png?width=800&height=300&type=line&duration=7d">
     </a>
   </div>
 
+  <!-- Irradiancia Solar -->
   <div class="card">
-    <h2>Irradiancia Solar</h2><br>
-    <a href="https://io.adafruit.com/guille_meteorologia/feeds/irradiancia-solar-niederhaus">
+    <h2>🌞 Irradiancia Solar</h2>
+    <a href="https://io.adafruit.com/guille_meteorologia/feeds/irradiancia-solar-niederhaus" target="_blank">
       <img
+        src="https://io.adafruit.com/guille_meteorologia/feeds/irradiancia-solar-niederhaus/chart.png?width=800&height=300&type=line&duration=7d"
+        alt="Gráfica Irradiancia"
         class="chart"
-        src="https://io.adafruit.com/guille_meteorologia/feeds/irradiancia-solar-niederhaus/chart.png?background=%23ffffff&color=%230073e6&timezone=America%2FLima&type=line"
-        alt="Gráfica Irradiancia Solar">
+        data-src="https://io.adafruit.com/guille_meteorologia/feeds/irradiancia-solar-niederhaus/chart.png?width=800&height=300&type=line&duration=7d">
     </a>
   </div>
 
   <footer>
-    <div>Panel completo en <a href="https://io.adafruit.com/guille_meteorologia/dashboards" target="_blank">Adafruit IO</a></div>
-    <div>Coordenadas de ubicación: -31.577588, -60.543673</div>
-    <div>
+    <p>
+      Panel completo en <a href="https://io.adafruit.com/guille_meteorologia" target="_blank">Adafruit IO</a><br>
+      Coordenadas de ubicación: -31.577588, -60.543673<br>
       Guillermo Niedermayer<br>
       Integrante del CMMC SAT y Secretario Bomberos Voluntarios Rincón<br>
       <a href="mailto:guille.meteorologia@gmail.com">guille.meteorologia@gmail.com</a>
-    </div>
+    </p>
   </footer>
 
-  <!-- Recarga automática de las imágenes cada 60 segundos -->
   <script>
+    // Recargar imágenes cada 60 segundos para que se actualicen
     setInterval(() => {
       document.querySelectorAll('.chart').forEach(img => {
-        const t = Date.now();
-        img.src = img.src.split('?')[0] + img.src.slice(img.src.indexOf('?')) + '&_=' + t;
+        const src = img.getAttribute('data-src');
+        img.src = `${src}&_=${new Date().getTime()}`; // Forzar refresco con parámetro único
       });
     }, 60000);
   </script>
